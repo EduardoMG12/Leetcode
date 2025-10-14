@@ -112,19 +112,14 @@ pub fn invert_tree(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<Tre
     if let Some(node_rc) = &root {
     
         let left_child = node_rc.borrow_mut().left.take();
-        let right_child = node_rc.borrow_mut().right.take();
-        
+        let right_child = node_rc.borrow_mut().right.take();      
 
         node_rc.borrow_mut().left = right_child;
         node_rc.borrow_mut().right = left_child;
 
-
-
         let node = node_rc.borrow();
         invert_tree(node.left.clone());
         invert_tree(node.right.clone());
-        
-
     }
 
     root
