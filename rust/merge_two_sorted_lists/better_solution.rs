@@ -51,7 +51,9 @@ impl Solution {
             }
             
         
-            current_tail = &mut current_tail.as_mut().unwrap().next;
+            if let Some(node) = current_tail {
+                current_tail = &mut node.next;
+            }
         }
 
     
